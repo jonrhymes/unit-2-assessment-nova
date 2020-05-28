@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const PORT = process.env.PORT || 3000;
 const db = mongoose.connection;
 const methodOverride = require('method-override');
 
@@ -12,7 +13,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
-mongoose.connect('mongodb://localhost:27017/todos', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true});
+
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/todos'
+
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true});
+
+
 
 db.once('open', () => {
     console.log('Mongo connected')
@@ -75,6 +81,6 @@ app.delete('/todos/:id', (req, res) => {
 //     Todo.fin
 // })
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('listening');
 })
