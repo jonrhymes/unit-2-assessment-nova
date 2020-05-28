@@ -4,10 +4,12 @@ class Index extends React.Component {
     render() {
         console.log(this.props.todos)
         return (
-            <html>
+            <html lang="en" dir="ltr">
                 <head>
+                <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link href="/public/stylesheets/style.css" rel="stylesheet" /> 
-
+                <title>Unit 2 Assessment</title>
                 </head>
                 <body>
             <h1>To Do List</h1>
